@@ -1,0 +1,76 @@
+.banner{
+    position: absolute;
+    width: 100% ;
+    height: 1680;
+    background-color: rgba(0,0,0,0.38);
+    filter: grayscale(50%);
+}
+.banner-text{
+    position:relative;
+ margin-left: 220px;
+padding-top: 180px;
+font-size: 2.5rem;
+color: orange;
+}
+.why{
+    margin-top: 300px;
+    margin-left: 700px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    font-size: 64px;
+}
+.text1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.blockwhy{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    font-size: 20px;
+    margin-left: 220px;
+    position: absolute;
+    margin-top: 500px;
+}
+.star{
+    width: 50px;
+    height: 50px;
+}
+.door{
+    width: 50px;
+    height: 50px;       
+}
+.baloons{
+    width: 50px;
+    height: 50px; 
+}
+.art{
+    width: 50px;
+    height: 50px; 
+}
+.food{
+    width: 50px;
+    height: 50px; 
+}
+.route{
+    width: 50px;
+    height: 50px;   
+}
+.border text{
+    margin-top: 700px;
+    margin-left: 600px;
+    font-size: 20px;
+    display: flex;
+    position: absolute;
+    border: solid;
+    border-radius: 40px;
+    border-color: black;
+    padding: 40px;
+}
