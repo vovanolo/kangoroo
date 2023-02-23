@@ -1,16 +1,19 @@
 import { useState } from "react"
 import {Modal} from "../"
 import { data } from "./data"
+import {GrClose} from 'react-icons/gr'
 
 function Gallery (){
-    const [currentIndexImg, setCurrentIndexImg] = useState(0)
+    const [currentIndexImg, setCurrentIndexImg] = useState(-1)
+    console.log(currentIndexImg);
 
     return(
         <section>
             <Modal open={currentIndexImg!==-1}>
-                <div className="flex justify-center items-center h-screen">
+                <div className="flex justify-center items-center h-screen ">
                     <div className=""style={{minWidth: "80rem", minHeight: "50rem"}}>
-                        <img className="object-cover w-full h-full" src={data[currentIndexImg].img} alt={data[currentIndexImg].key} />
+                     {currentIndexImg!==-1&& <img className="object-cover w-full h-full" src={data[currentIndexImg].img} alt={data[currentIndexImg].key} />}
+                     <GrClose className="bg-white flex mx-8  relative"/>
                     </div>
                 </div>
             </Modal>
