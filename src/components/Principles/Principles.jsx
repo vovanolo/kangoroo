@@ -1,4 +1,3 @@
-import styles from "./Principles.module.css";
 import { data } from "./data";
 
 function Principles() {

@@ -5,15 +5,18 @@ import {GrClose} from 'react-icons/gr'
 
 function Gallery (){
     const [currentIndexImg, setCurrentIndexImg] = useState(-1)
-    console.log(currentIndexImg);
+
+    const toggleModal = () => {
+        setCurrentIndexImg(-1);
+    }
 
     return(
         <section>
             <Modal open={currentIndexImg!==-1}>
-                <div className="flex justify-center items-center h-screen ">
+                <div className="flex justify-center items-center h-screen" onClick={toggleModal}>
                     <div className=""style={{minWidth: "80rem", minHeight: "50rem"}}>
                      {currentIndexImg!==-1&& <img className="object-cover w-full h-full" src={data[currentIndexImg].img} alt={data[currentIndexImg].key} />}
-                     <GrClose className="bg-white flex mx-8  relative"/>
+                     <GrClose className="flex" onClick={toggleModal}/>
                     </div>
                 </div>
             </Modal>
