@@ -17,11 +17,11 @@ export const buttons = [
   {
     key: 4,
     label: "Галерея",
-    to: "#",
+    to: "#Gallery",
   },
   {
     key: 5,
     label: "Контакти",
-    to: "#",
+    to: "#Contacts",
   },
 ];

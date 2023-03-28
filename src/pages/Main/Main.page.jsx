@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Gallery, News, Principles } from '../../components';
+import { Contacts, Gallery, News, Principles } from '../../components';
 import banner from '../../images/banner.png';
 
 function main() {
@@ -22,6 +22,7 @@ function main() {
 
             <News />
             <Gallery />
+            <Contacts/>
         </Fragment>
      );
 }

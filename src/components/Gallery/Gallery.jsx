@@ -11,7 +11,7 @@ function Gallery (){
     }
 
     return(
-        <section>
+        <section id="Gallery">
             <Modal open={currentIndexImg!==-1}>
                 <div className="flex justify-center items-center h-screen" onClick={toggleModal}>
                     <div className=""style={{minWidth: "80rem", minHeight: "50rem"}}>

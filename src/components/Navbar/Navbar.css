@@ -1,0 +1,40 @@
+.logo{
+    width: 110px;
+    height: 120px ;
+    transform-origin: 50%, 50%;
+    animation: logoanime 0.5s linear alternate infinite ;
+}
+.list{
+    min-width: 200px;
+    height: 0; 
+    opacity: 0;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: darkgray;
+    text-align: center;
+    overflow: hidden;
+    transition: height .38s ease-in, opacity .43s ease;
+}
+.list li {
+    padding: 10px 0;
+    font-size: 30px;
+}
+.dropdown{
+    position: relative;
+}
+.dropdown:hover>.list {
+    height: 325px;
+    opacity: 1;
+}
+@keyframes logoanime {
+    0% {
+        transform: translate(0, 0) scale3d(1,1,1);
+    } 
+    50% {
+        transform: translate(10px, -20%) scale3d(0.7,0.8,1);
+    }
+    100% {
+        transform: translate(20px, -37%) scale3d(1.5,0.9,1);
+    }
+}
