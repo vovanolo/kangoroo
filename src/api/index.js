@@ -1,6 +1,6 @@
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { addDoc, collection, getDocs } from "firebase/firestore"
+import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage"
 
 import { auth, firestore, storage } from "../config/firebase"
 
@@ -27,4 +27,11 @@ export const createNew = async (data, file) => {
             alert("CREATED")
         }).catch(err => alert(err.message))
     }).catch(err => alert(err.message))
+}
+
+export const getGallery = async () => {
+    const listRef = ref(storage, `files`)
+    const { items } = await listAll(listRef)
+    const result = items.map(async (it) => await getDownloadURL(it))
+    return await Promise.all(result).then(res => res)
 }
