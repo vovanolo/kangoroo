@@ -1,16 +1,14 @@
-import React from 'react';
-import Main from './pages/Main';
-import Navbar from './components/Navbar';
+import { Suspense } from "react";
+import { RouterProvider } from "react-router-dom";
+
+import routerOConfig from "./config/routes";
 
 function App() {
   return (
-    <React.Fragment>
-      <Navbar/>
-      <Main/>
-    </React.Fragment>
+    <Suspense fallback={<p>Loading....</p>}>
+      <RouterProvider router={routerOConfig} />
+    </Suspense>
   );
-
-  
 }
 
 export default App;
