@@ -1,37 +1,65 @@
+import { useAtomValue, useSetAtom } from "jotai";
+import { ImExit } from "react-icons/im";
+
 // import styles from "./Navbar.module.css"
-import logo from '../../images/logo2.png'
+import logo from "../../images/logo2.png";
 import list from "../../images/List.png";
 import "./Navbar.css";
 
-import { buttons } from "./buttons"
+import { buttons } from "./buttons";
+import { authStorage, initialAtom } from "../../config/jotai";
 
 function Navbar() {
-    return ( 
-        <header className="fixed top-0 left-0 right-0 bg-gray-400 z-30">
-            <div className="container mx-auto flex items-center justify-between p-4">
-                <div className='bg-white px-4 py-2 rounded-full'>
-                <img className='logo' src={logo} alt="logo"/>
-                </div>
-                <nav className="hidden lg:flex gap-10 text-3xl">
-                    {buttons.map(({ key, label, to }) => (
-                        <a key={key} className="text-yellow-400 hover:text-white transition-colors" href={to}>{label}</a>
-                    ))}
-                </nav>
-                <div className="dropdown block lg:hidden">
-                <button>
-                    <img src={list} alt="" className='w-16 h-16 hover'/>
-                </button>
-                <ul className='list'>
-                {buttons.map(({ key, label, to }) => (
-                    <li key={key} >
-                        <a className="text-yellow-400 hover:text-white transition-colors" href={to}>{label}</a>
-                    </li>
-                    ))}
-                </ul>
-                </div>
-            </div>
-        </header>
-     );
+  const { token } = useAtomValue(authStorage);
+  const setAuthAtom = useSetAtom(authStorage);
+
+  function exitUser() {
+    setAuthAtom(initialAtom);
+  }
+
+  return (
+    <header className="fixed top-0 left-0 right-0 bg-gray-400 z-30">
+      <div className="container mx-auto flex items-center justify-between p-4">
+        <div className="bg-white px-4 py-2 rounded-full">
+          <img className="logo" src={logo} alt="logo" />
+        </div>
+        <nav className="hidden lg:flex gap-10 text-3xl">
+          {buttons.map(({ key, label, to }) => (
+            <a
+              key={key}
+              className="text-yellow-400 hover:text-white transition-colors"
+              href={to}
+            >
+              {label}
+            </a>
+          ))}
+
+          {token && (
+            <button onClick={exitUser}>
+              <ImExit size={25} />
+            </button>
+          )}
+        </nav>
+        <div className="dropdown block lg:hidden">
+          <button>
+            <img src={list} alt="" className="w-16 h-16 hover" />
+          </button>
+          <ul className="list">
+            {buttons.map(({ key, label, to }) => (
+              <li key={key}>
+                <a
+                  className="text-yellow-400 hover:text-white transition-colors"
+                  href={to}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default Navbar;
