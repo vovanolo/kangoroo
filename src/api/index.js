@@ -43,16 +43,19 @@ export const getNews = async () => {
   return docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 };
 
-export const createNew = async (data, file) => {
+export const createNew = async (data, file, onAddNew) => {
   const storageRef = ref(storage, `files/${file.name}`);
   return uploadBytes(storageRef, file)
     .then((snapshot) => {
       getDownloadURL(snapshot.ref)
         .then(async (downloadURL) => {
-          await addDoc(collection(firestore, "News"), {
+          const createdData = await addDoc(collection(firestore, "News"), {
             preview: downloadURL,
             ...data,
           });
+          const findedNew = doc(firestore, "News", createdData.id);
+          const converted = (await getDoc(findedNew)).data();
+          onAddNew(converted);
           alert("CREATED");
         })
         .catch((err) => alert(err.message));

@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useAtomValue } from "jotai";
 
-import { BsTrashFill } from "react-icons/bs";
-import { AiTwotoneEdit } from "react-icons/ai";
-
-import urls from "../../config/urls";
-import { authStorage } from "../../config/jotai";
-import { getNews, deleteNewById } from "../../api";
+import { getNews } from "../../api";
 
 function News() {
-  const { token } = useAtomValue(authStorage);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -27,23 +19,6 @@ function News() {
       setLoading(false);
     };
   }, []);
-
-  function deleteNew(newId) {
-    setLoading(true);
-    deleteNewById(newId)
-      .then((res) => {
-        setNews((prev) => prev.filter(({ id }) => id !== newId));
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-        alert("DELETED");
-      });
-  }
-
-  console.log(token);
 
   return (
     <article id="News" className="p-10">
@@ -68,17 +43,6 @@ function News() {
               </div>
               <p className="text-3xl">{title}</p>
               <p>{description}</p>
-
-              {token && (
-                <div className="absolute top-0 right-0 flex gap-4 items-center">
-                  <Link to={urls.news + "/" + id} target="_blank">
-                    <AiTwotoneEdit size={26} />
-                  </Link>
-                  <button onClick={() => deleteNew(id)}>
-                    <BsTrashFill size={24} />
-                  </button>
-                </div>
-              )}
             </div>
           ))}
       </div>

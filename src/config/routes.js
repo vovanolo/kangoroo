@@ -5,9 +5,9 @@ import { Navbar, PrivateRoute, RestrictedRoute } from "../components";
 import urls from "./urls";
 
 const HomePage = lazy(() => import("../pages/Main"));
-const NewsPage = lazy(() => import("../pages/News"));
 const EditNewPage = lazy(() => import("../pages/EditNew"));
 const LoginPage = lazy(() => import("../pages/Login"));
+const AdminPage = lazy(() => import("../pages/AdminPage"));
 
 const routerOConfig = createBrowserRouter([
   {
@@ -29,8 +29,8 @@ const routerOConfig = createBrowserRouter([
     element: <PrivateRoute />,
     children: [
       {
-        path: urls.news,
-        element: <NewsPage />,
+        path: urls.admin,
+        element: <AdminPage />,
       },
     ],
   },
