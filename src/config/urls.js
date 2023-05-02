@@ -1,7 +1,7 @@
 const urls = {
   home: "/",
   login: "/login",
-  news: "/news",
+  new: "/new",
   admin: "/admin",
   AdminN: "/AdminNews",
 };

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { getNews } from "../../api";
+import urls from "../../config/urls";
 
 function News() {
   const [news, setNews] = useState([]);
@@ -29,8 +31,9 @@ function News() {
         {!isLoading &&
           news &&
           news.map(({ id, title, description, preview }, index) => (
-            <div
+            <Link
               key={index}
+              to={urls.new + `/${id}`}
               className="flex flex-col items-center w-full sm:w-1/2 lg:w-1/4 relative"
             >
               <div className="max-w-3xl">
@@ -43,7 +46,7 @@ function News() {
               </div>
               <p className="text-3xl">{title}</p>
               <p>{description}</p>
-            </div>
+            </Link>
           ))}
       </div>
     </article>

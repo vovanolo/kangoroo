@@ -4,6 +4,7 @@ import list from "../../images/List.png";
 import "./Navbar.css";
 
 import { buttons } from "./buttons";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -14,13 +15,13 @@ function Navbar() {
         </div>
         <nav className="hidden lg:flex gap-10 text-3xl">
           {buttons.map(({ key, label, to }) => (
-            <a
+            <Link
               key={key}
+              to={to}
               className="text-yellow-400 hover:text-white transition-colors"
-              href={to}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="dropdown block lg:hidden">

@@ -5,6 +5,7 @@ import { Navbar, PrivateRoute, RestrictedRoute } from "../components";
 import urls from "./urls";
 
 const HomePage = lazy(() => import("../pages/Main"));
+const AboutNewPage = lazy(() => import("../pages/AboutNew"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const AdminPage = lazy(() => import("../pages/AdminPage"));
 
@@ -21,6 +22,10 @@ const routerOConfig = createBrowserRouter([
       {
         path: urls.home,
         element: <HomePage />,
+      },
+      {
+        path: urls.new + "/:newId",
+        element: <AboutNewPage />,
       },
     ],
   },
