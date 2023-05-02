@@ -1,10 +1,8 @@
-import urls from "../../config/urls";
-
 export const buttons = [
   {
     key: 1,
     label: "Головна",
-    to: urls.home + "#Main",
+    to: "#Main",
   },
   {
     key: 2,

@@ -4,6 +4,7 @@ const urls = {
   new: "/new",
   admin: "/admin",
   AdminN: "/AdminNews",
+  Principles: "/Principles",
 };
 
 export default urls;

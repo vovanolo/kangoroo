@@ -15,13 +15,13 @@ function Navbar() {
         </div>
         <nav className="hidden lg:flex gap-10 text-3xl">
           {buttons.map(({ key, label, to }) => (
-            <Link
+            <a
               key={key}
-              to={to}
+              href={"http://localhost:3000" + to}
               className="text-yellow-400 hover:text-white transition-colors"
             >
               {label}
-            </Link>
+            </a>
           ))}
         </nav>
         <div className="dropdown block lg:hidden">
