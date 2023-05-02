@@ -15,7 +15,7 @@ function Modal({
   bgColors = "bg-slate-800",
 }) {
   const { clss, clssDimmer } = useMemo(() => {
-    const clss = [bgColors, "z-40"];
+    const clss = [bgColors, "z-40", "overflow-auto"];
     const clssDimmer = ["fixed", "inset-0", "bg-black", "opacity-75", "z-30"];
 
     if (size === SIZE_TYPE.full) {
@@ -52,7 +52,7 @@ function Modal({
     }
 
     return { clss: clss.join(" "), clssDimmer: clssDimmer.join(" ") };
-  }, [open, size, isDimmer, bgColors]);
+  }, [open, size, bgColors]);
 
   return (
     <Fragment>

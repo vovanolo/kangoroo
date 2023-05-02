@@ -8,7 +8,13 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  deleteObject,
+} from "firebase/storage";
 
 import { auth, firestore, storage } from "../config/firebase";
 
@@ -70,7 +76,7 @@ export const getGallery = async () => {
   return await Promise.all(result).then((res) => res);
 };
 
-export const updateNewById = async (newId, data, file) => {
+export const updateNewById = async (newId, data, file, onSuccess) => {
   const newWithId = doc(firestore, "News", newId);
 
   if (file) {
@@ -80,6 +86,7 @@ export const updateNewById = async (newId, data, file) => {
         getDownloadURL(snapshot.ref)
           .then(async (downloadURL) => {
             await updateDoc(newWithId, { preview: downloadURL, ...data });
+            onSuccess(newId, { ...data, preview: downloadURL });
             alert("UPDATED");
           })
           .catch((err) => alert(err.message));
@@ -88,6 +95,7 @@ export const updateNewById = async (newId, data, file) => {
   }
 
   alert("UPDATED");
+  onSuccess(newId, { ...data });
   return await updateDoc(newWithId, data);
 };
 
@@ -96,7 +104,33 @@ export const getNewById = async (newId) => {
   return (await getDoc(newWithId)).data();
 };
 
+export const uploadImage = async (file, onSuccess) => {
+  const storageRef = ref(storage, `files/${file.name}`);
+  return uploadBytes(storageRef, file)
+    .then((snapshot) => {
+      getDownloadURL(snapshot.ref)
+        .then(async (downloadURL) => {
+          onSuccess(downloadURL);
+          alert("UPLOADED");
+        })
+        .catch((err) => alert(err.message));
+    })
+    .catch((err) => alert(err.message));
+};
+
 export const deleteNewById = async (newId) => {
   const newWithId = doc(firestore, "News", newId);
   return await deleteDoc(newWithId);
+};
+
+export const deleteImageFromGallery = async (url, onSuccess) => {
+  const desertRef = ref(storage, url);
+  // Delete the file
+  try {
+    const data = await deleteObject(desertRef);
+    onSuccess(url);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };

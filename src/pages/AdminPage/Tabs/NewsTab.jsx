@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
-import { Link } from "react-router-dom";
 
 import { BsTrashFill } from "react-icons/bs";
 import { AiTwotoneEdit } from "react-icons/ai";
 
-import urls from "../../../config/urls";
 import { authStorage } from "../../../config/jotai";
 import { getNews, deleteNewById } from "../../../api";
-import { Modal, AddNews } from "../../../components";
+import { Modal, AddNews, EditNews } from "../../../components";
 import Loader from "../../../components/Loader/Loader";
 import { SIZE_TYPE } from "../../../components/Modal/Modal";
 
@@ -19,6 +17,7 @@ const activeModals = {
 export default function NewsTab() {
   const { token } = useAtomValue(authStorage);
   const [activeModal, setActiveModal] = useState(null);
+  const [choosenNewId, setChoosenNewId] = useState(null);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -55,8 +54,17 @@ export default function NewsTab() {
     setNews((prev) => [{ ...dataNew }, ...prev]);
   }
 
-  function openModal(modalName) {
+  function onUpdateNew(id, data) {
+    setNews((prev) =>
+      prev.map((news) =>
+        news.id === id ? { ...data, id: news.id } : { ...news }
+      )
+    );
+  }
+
+  function openModal(modalName, id = null) {
     setActiveModal(modalName);
+    setChoosenNewId(id);
   }
 
   function onClose() {
@@ -78,6 +86,14 @@ export default function NewsTab() {
         isDimmer
       >
         <AddNews onAddNew={onAddNew} onCloseModals={onClose} />
+      </Modal>
+      <Modal
+        open={activeModal === activeModals.update}
+        onClose={onClose}
+        size={SIZE_TYPE.small}
+        isDimmer
+      >
+        <EditNews newId={choosenNewId} onUpdate={onUpdateNew} />
       </Modal>
       {isLoading && <Loader />}
       <div className="flex flex-wrap justify-center gap-8 container mx-auto mt-10">
@@ -101,9 +117,9 @@ export default function NewsTab() {
 
               {token && (
                 <div className="absolute top-0 right-0 flex gap-4 items-center bg-gray-200 px-4 py-2">
-                  <Link to={urls.news + "/" + id} target="_blank">
+                  <button onClick={() => openModal(activeModals.update, id)}>
                     <AiTwotoneEdit size={26} />
-                  </Link>
+                  </button>
                   <button onClick={() => deleteNew(id)}>
                     <BsTrashFill size={24} />
                   </button>

@@ -1,22 +1,11 @@
-import { useAtomValue, useSetAtom } from "jotai";
-import { ImExit } from "react-icons/im";
-
 // import styles from "./Navbar.module.css"
 import logo from "../../images/logo2.png";
 import list from "../../images/List.png";
 import "./Navbar.css";
 
 import { buttons } from "./buttons";
-import { authStorage, initialAtom } from "../../config/jotai";
 
 function Navbar() {
-  const { token } = useAtomValue(authStorage);
-  const setAuthAtom = useSetAtom(authStorage);
-
-  function exitUser() {
-    setAuthAtom(initialAtom);
-  }
-
   return (
     <header className="fixed top-0 left-0 right-0 bg-gray-400 z-30">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -33,12 +22,6 @@ function Navbar() {
               {label}
             </a>
           ))}
-
-          {token && (
-            <button onClick={exitUser}>
-              <ImExit size={25} />
-            </button>
-          )}
         </nav>
         <div className="dropdown block lg:hidden">
           <button>

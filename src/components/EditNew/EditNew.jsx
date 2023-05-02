@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
 import { useFormik } from "formik";
-import { useParams } from "react-router-dom";
+
 import { authStorage } from "../../config/jotai";
 import { getNewById, updateNewById } from "../../api";
 
-export default function EditNew() {
-  const { newsId } = useParams();
+export default function EditNew({ newId, onUpdate }) {
   const { token } = useAtomValue(authStorage);
 
   const [isData, setIsData] = useState(false);
@@ -14,6 +13,7 @@ export default function EditNew() {
   const [isUpdating, setIsUpdating] = useState(false);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -21,7 +21,9 @@ export default function EditNew() {
     },
     onSubmit: (values) => {
       setIsUpdating(true);
-      updateNewById(newsId, values, file)
+      updateNewById(newId, values, file, (newId, values) =>
+        onUpdate(newId, { ...values, preview })
+      )
         .then((res) => res)
         .catch((err) => err)
         .finally(() => setIsUpdating(false));
@@ -38,7 +40,7 @@ export default function EditNew() {
 
   useEffect(() => {
     setIsFetchingNewByid(true);
-    getNewById(newsId)
+    getNewById(newId)
       .then((res) => {
         console.log(res);
         setIsData(res ? true : false);
@@ -49,7 +51,8 @@ export default function EditNew() {
       })
       .catch((err) => console.log(err.message))
       .finally(() => setIsFetchingNewByid(false));
-  }, [newsId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newId]);
 
   if (!token) {
     return <p>"MustLogin"</p>;
@@ -65,8 +68,8 @@ export default function EditNew() {
 
   return (
     <div>
-      EditNew {newsId}
-      <div className="flex items-center justify-center h-screen text-2xl text-white relative">
+      EditNew {newId}
+      <div className="flex items-center justify-center text-2xl text-white relative pb-4">
         <form
           className="flex flex-col gap-12 w-96"
           onSubmit={formik.handleSubmit}
