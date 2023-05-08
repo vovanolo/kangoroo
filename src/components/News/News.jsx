@@ -30,7 +30,7 @@ function News() {
       <div className="flex flex-wrap justify-center gap-8 container mx-auto mt-10">
         {!isLoading &&
           news &&
-          news.map(({ id, title, description, preview }, index) => (
+          news.map(({ id, title, preview }, index) => (
             <Link
               key={index}
               to={urls.new + `/${id}`}
@@ -45,7 +45,6 @@ function News() {
                 />
               </div>
               <p className="text-3xl">{title}</p>
-              <p>{description}</p>
             </Link>
           ))}
       </div>

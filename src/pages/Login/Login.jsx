@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { useSetAtom } from "jotai";
 import { useFormik } from "formik";
 
-import bgBack from "../../images/gorila-ass.mp4";
+import bgBack from "../../images/Black.png";
 import { authStorage } from "../../config/jotai";
 import { logIn } from "../../api";
 
@@ -73,7 +73,13 @@ export default function Login() {
           <span className="text-red-300">{formik.errors.password}</span>
         </label>
 
-        <button type="submit">Увійти</button>
+        <button
+          className="bg-blue-400"
+          type="submit"
+          style={{ color: "black", fontSize: "40px" }}
+        >
+          Увійти
+        </button>
       </form>
     </div>
   );

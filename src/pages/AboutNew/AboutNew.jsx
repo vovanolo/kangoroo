@@ -46,24 +46,33 @@ export default function AboutNew() {
   }
 
   return (
-    <div
-      className="flex items-center justify-center relative"
-      style={{ minHeight: "calc(100vh - 118px)", marginTop: "118px" }}
-    >
-      <div className="absolute inset-0" style={{ zIndex: -1 }}>
-        <img
-          className="w-full h-full object-cover"
-          src={dataNew.preview}
-          alt={dataNew.preview}
-        />
-        <div
-          className="absolute inset-0 bg-black opacity-75"
-          style={{ zIndex: 1 }}
-        />
-      </div>
-      <div className="text-white">
-        <h1 className="text-7xl">{dataNew.title}</h1>
-        <p className="text-4xl">{dataNew.description}</p>
+    <div className="relative" style={{ marginTop: "118px" }}>
+      <section
+        className="relative flex items-center justify-center"
+        style={{ minHeight: "50vh" }}
+      >
+        <div className="text-white">
+          <h1 className="flex justify-center items-center text-7xl relative">
+            {dataNew.title}
+          </h1>
+        </div>
+        <div className="absolute inset-0" style={{ zIndex: -1 }}>
+          <img
+            className="w-full h-full object-cover"
+            style={{ maxHeight: 550 }}
+            src={dataNew.preview}
+            alt={dataNew.preview}
+          />
+          <div
+            className="absolute inset-0 bg-black opacity-75"
+            style={{ zIndex: 1 }}
+          />
+        </div>
+      </section>
+      <div className="flex items-center justify-center mt-5">
+        <p className="max-w-3xl flex justify-center items-center text-4xl">
+          {dataNew.description}
+        </p>
       </div>
     </div>
   );
