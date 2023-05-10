@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/kangoroo/static/css/main.9ebff8b7.css",
-    "main.js": "/kangoroo/static/js/main.8309b85c.js",
+    "main.js": "/kangoroo/static/js/main.b55cd30a.js",
     "static/js/558.d61029d6.chunk.js": "/kangoroo/static/js/558.d61029d6.chunk.js",
     "static/js/255.3f3f8dfe.chunk.js": "/kangoroo/static/js/255.3f3f8dfe.chunk.js",
     "static/js/762.076b430d.chunk.js": "/kangoroo/static/js/762.076b430d.chunk.js",
@@ -25,7 +25,7 @@
     "static/media/route.svg": "/kangoroo/static/media/route.d2495535946d8234db8f92a6aac685ca.svg",
     "index.html": "/kangoroo/index.html",
     "main.9ebff8b7.css.map": "/kangoroo/static/css/main.9ebff8b7.css.map",
-    "main.8309b85c.js.map": "/kangoroo/static/js/main.8309b85c.js.map",
+    "main.b55cd30a.js.map": "/kangoroo/static/js/main.b55cd30a.js.map",
     "558.d61029d6.chunk.js.map": "/kangoroo/static/js/558.d61029d6.chunk.js.map",
     "255.3f3f8dfe.chunk.js.map": "/kangoroo/static/js/255.3f3f8dfe.chunk.js.map",
     "762.076b430d.chunk.js.map": "/kangoroo/static/js/762.076b430d.chunk.js.map",
@@ -40,6 +40,6 @@
   },
   "entrypoints": [
     "static/css/main.9ebff8b7.css",
-    "static/js/main.8309b85c.js"
+    "static/js/main.b55cd30a.js"
   ]
 }
