@@ -1,5 +1,5 @@
 const urls = {
-  home: "/",
+  home: "/home",
   login: "/login",
   new: "/new",
   admin: "/admin",
